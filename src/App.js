@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import Interact from './Interact';
 import Content from './content';
 import {MARKS} from './constants';
@@ -59,11 +60,15 @@ class App extends Component {
   }
 
   beatOne() {
-    console.log('beat1');
+    this.setState({
+      content: _.concat(this.state.content, MARKS.ONE)
+    });
   }
 
   beatFive() {
-    console.log('beat5');
+    this.setState({
+      content: _.concat(this.state.content, MARKS.FIVE)
+    });
   }
 
   off() {
@@ -71,7 +76,9 @@ class App extends Component {
   }
 
   transition() {
-    console.log('transition');
+    this.setState({
+      content: _.concat(this.state.content, MARKS.CHANGE)
+    });
   }
 
   render() {
@@ -90,14 +97,16 @@ class App extends Component {
           />
           <button onClick={this.save} disabled="">Save</button>
         </div>
-        <Content content={this.state.content} className="output"/>
+        <div className="output">
+          <Content content={this.state.content} className="output"/>
+        </div>
         <div className="interaction">
           <div className="down-beat-btn">
-            <Interact className="down-beat-one" onInteract={this.beatOne} tap>BEAT</Interact>
-            <Interact className="down-beat-five" onInteract={this.beatFive} tap>BEAT</Interact>
+            <Interact className="down-beat-one" onInteract={this.beatOne.bind(this)} tap>BEAT</Interact>
+            <Interact className="down-beat-five" onInteract={this.beatFive.bind(this)} tap>BEAT</Interact>
           </div>
           <Interact className="off-beat-btn" onInteract={this.off} tap>OFF</Interact>
-          <Interact className="transition" onInteract={this.transition} swipe>Transition</Interact>
+          <Interact className="transition" onInteract={this.transition.bind(this)} swipe>Transition</Interact>
         </div>
       </div>
     );
