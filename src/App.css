@@ -1,0 +1,67 @@
+.App {
+
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  height: 5%;
+  width: 100%;
+  z-index: 10;
+}
+
+.output {
+  height: 95%;
+  width: 100%;
+  z-index: 1;
+}
+
+.interaction {
+  z-index: 10;
+  opacity: .2;
+  position: absolute;
+  bottom: 0;
+  height: 95%;
+  width: 100%;
+  text-align: center;
+}
+
+.interact:active {
+  opacity: .8;
+}
+
+.down-beat-btn {
+  height: 80%;
+  width: 50%;
+  float: left;
+}
+
+.down-beat-one, .down-beat-five {
+  height: 50%;
+  width: 100%;
+}
+
+.down-beat-one {
+  background-color: blue;
+}
+
+.down-beat-five {
+  background-color: green;
+}
+
+.off-beat-btn {
+  background-color: gray;
+  height: 80%;
+  width: 50%;
+  float: right;
+}
+
+.transition {
+  background-color: yellow;
+  position: absolute;
+  bottom: 0;
+  height: 20%;
+  width: 100%;
+}

@@ -1,0 +1,30 @@
+.ONE::after {
+	content: 'o';
+	position: absolute;
+	bottom: -5px;
+}
+
+.FIVE::after {
+	content: 'o';
+	position: absolute;
+	top: -5px;
+}
+
+.CHANGE {
+	display: inline;
+}
+
+.CHANGE::after {
+	content: '-----'
+}
+
+.mark {
+	text-align: center;
+	height: 15px;
+	width: 18px;
+	position: relative;
+}
+
+.content-display {
+	padding: 20px;
+}
