@@ -159,8 +159,7 @@
   height: 100%;
   width: 70vw;
   z-index: 20;
-  background-color: black;
-  color: white;
+  background-color: lightgray;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -170,6 +169,14 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.active {
+}
+
+.inactive {
+  color: gray;
+  text-decoration-style: solid;
 }
 
 .slide-up-enter {

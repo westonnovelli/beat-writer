@@ -14,7 +14,7 @@ class App extends Component {
       recording: false,
       settings: false,
       standard: true,
-      simple: false,
+      simple: true,
       saving: false,
       alert: {},
       name: '',
