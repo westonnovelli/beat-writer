@@ -1,18 +1,80 @@
 .App {
-
   height: 100%;
   width: 100%;
   position: relative;
 }
 
+.alert {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  z-index: 20;
+  bottom: 0;
+  height: 5%;
+  width: 100%;
+}
+
+.NOTE {
+  background-color: green;
+  color: white;
+}
+
+.ERROR {
+  background-color: red;
+  color: white;
+}
+
+.loader {
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  float: right;
+  background-color: orange;
+}
+
+.animated {
+  animation-name: load;
+  animation-duration: 3.2s;
+}
+
+@keyframes load {
+    from {width: 100%;}
+    to {width: 0;}
+}
+
 .header {
   text-align: center;
+  display: flex;
+  justify-content: space-between;
   height: 5%;
   width: 100%;
   z-index: 10;
 }
 
+.input {
+  width: 80%;
+}
+
+.btn {
+
+}
+
+.save-btn {
+
+}
+
+.record-btn {
+
+}
+
 .display-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   height: 5%;
   width: 100%;
@@ -26,12 +88,27 @@
 
 .interaction {
   z-index: 10;
-  opacity: .2;
   position: absolute;
   bottom: 0;
   height: 95%;
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.area {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.show {
+  opacity: .2;
 }
 
 .interact:active {
@@ -41,7 +118,6 @@
 .down-beat-btn {
   height: 80%;
   width: 50%;
-  float: left;
 }
 
 .down-beat-one, .down-beat-five {
@@ -51,17 +127,19 @@
 
 .down-beat-one {
   background-color: blue;
+  color: white;
 }
 
 .down-beat-five {
   background-color: green;
+  color: white;
 }
 
 .off-beat-btn {
   background-color: gray;
+  color: white;
   height: 80%;
   width: 50%;
-  float: right;
 }
 
 .transition {
@@ -71,3 +149,81 @@
   height: 20%;
   width: 100%;
 }
+
+.settings-container {
+  display: flex;
+  justify-content: left;
+}
+
+.settings {
+  height: 100%;
+  width: 70vw;
+  z-index: 20;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.setting-option {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.slide-up-enter {
+  height: 0;
+}
+
+.slide-up-enter.slide-up-enter-active {
+  height: 5%;
+  transition: height 500ms ease-in;
+}
+
+.slide-up-leave {
+  height: 5%;
+}
+
+.slide-up-leave.slide-up-leave-active {
+  height: 0;
+  transition: height 500ms ease-out;
+}
+
+.slide-up-appear {
+  height: 0;
+}
+
+.slide-up-appear.slide-up-appear-active {
+  height: 5%;
+  transition: height 500ms ease-in;
+}
+
+
+.slide-down-enter {
+  height: 0;
+}
+
+.slide-down-enter.slide-down-enter-active {
+  height: 100%;
+  transition: height 500ms ease-in;
+}
+
+.slide-down-leave {
+  height: 100%;
+}
+
+.slide-down-leave.slide-down-leave-active {
+  height: 0;
+  transition: height 500ms ease-out;
+}
+
+.slide-down-appear {
+  height: 0;
+}
+
+.slide-down-appear.slide-down-appear-active {
+  height: 100%;
+  transition: height 500ms ease-in;
+}
+
