@@ -12,6 +12,12 @@
   z-index: 10;
 }
 
+.display-header {
+  text-align: center;
+  height: 5%;
+  width: 100%;
+}
+
 .output {
   height: 95%;
   max-width: 100%;

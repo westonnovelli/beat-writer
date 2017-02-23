@@ -11,7 +11,7 @@
 }
 
 .CHANGE {
-	display: inline;
+	width: 27px !important;
 }
 
 .CHANGE::after {
@@ -27,4 +27,7 @@
 
 .content-display {
 	padding: 20px;
+	padding-bottom: 0;
+	display: flex;
+	flex-flow: column wrap;
 }

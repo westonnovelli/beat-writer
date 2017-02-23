@@ -12,34 +12,16 @@ class App extends Component {
       recording: false,
       standard: true,
       simple: false,
+      saving: false,
       name: '',
-      content: [
-        MARKS.ONE,
-        MARKS.FIVE,
-        MARKS.ONE,
-        MARKS.FIVE,
-        MARKS.ONE,
-        MARKS.FIVE,
-        MARKS.ONE,
-        MARKS.FIVE,
-        MARKS.CHANGE,
-        MARKS.ONE,
-        MARKS.FIVE,
-        MARKS.ONE,
-        MARKS.ONE,
-        MARKS.CHANGE,
-        MARKS.FIVE,
-        MARKS.CHANGE,
-        MARKS.ONE,
-        MARKS.ONE,
-        MARKS.FIVE
-      ]
+      content: []
     };
   }
 
   toggleRecording() {
     this.setState({
-      recording: !this.state.recording
+      recording: !this.state.recording,
+      content: !this.state.recording ? [] : this.state.content
     });
   }
 
@@ -56,35 +38,39 @@ class App extends Component {
   }
 
   save() {
-    alert('todo: save');
+    if (_.isEmpty(this.state.name)) {
+      this.setState({
+        emptyName: true
+      });
+    } else {
+      this.toggleSave();
+    }
   }
 
-  beatOne() {
+  toggleSave() {
     this.setState({
-      content: _.concat(this.state.content, MARKS.ONE)
+      saving: !this.state.saving
     });
   }
 
-  beatFive() {
-    this.setState({
-      content: _.concat(this.state.content, MARKS.FIVE)
-    });
+  beat(mark) {
+    if (!this.state.recording && !_.isEmpty(this.state.content)) {
+      this.alert('overwrite');
+    } else {
+      this.setState({
+        content: _.concat(this.state.content, mark)
+      });
+    }
   }
 
   off() {
     console.log('off');
   }
 
-  transition() {
-    this.setState({
-      content: _.concat(this.state.content, MARKS.CHANGE)
-    });
-  }
-
   render() {
-    return (
-      <div className="App">
-        <div className="header">
+
+    const header = !this.state.saving ? (
+      <div className="header">
           <button onClick={this.toggleRecording.bind(this)}>
             {this.state.recording ? 'Stop' : 'Record'}
           </button>
@@ -95,21 +81,38 @@ class App extends Component {
             onChange={this.setName.bind(this)}
             value={this.state.name}
           />
-          <button onClick={this.save} disabled="">Save</button>
+          <button onClick={this.save.bind(this)}>Save</button>
         </div>
+    ) : (
+      <Interact className="display-header" onInteract={this.toggleSave.bind(this)} swipe>{this.state.name}</Interact>
+    );
+
+    const interaction = !this.state.saving ? (
+      <div className="interaction">
+        <div className="down-beat-btn">
+          <Interact className="down-beat-one" onInteract={() => this.beat(MARKS.ONE)} tap>BEAT</Interact>
+          <Interact className="down-beat-five" onInteract={() => this.beat(MARKS.FIVE)} tap>BEAT</Interact>
+        </div>
+        <Interact className="off-beat-btn" onInteract={this.off} tap>OFF</Interact>
+        <Interact className="transition" onInteract={() => this.beat(MARKS.CHANGE)} swipe>Transition</Interact>
+      </div>
+    ) : null;
+
+    const body = (
+      <div className="App">
+        {header}
         <div className="output">
           <Content content={this.state.content} className="output"/>
         </div>
-        <div className="interaction">
-          <div className="down-beat-btn">
-            <Interact className="down-beat-one" onInteract={this.beatOne.bind(this)} tap>BEAT</Interact>
-            <Interact className="down-beat-five" onInteract={this.beatFive.bind(this)} tap>BEAT</Interact>
-          </div>
-          <Interact className="off-beat-btn" onInteract={this.off} tap>OFF</Interact>
-          <Interact className="transition" onInteract={this.transition.bind(this)} swipe>Transition</Interact>
-        </div>
+        {interaction}
       </div>
     );
+
+    const alert = (
+      <div className="alert">Empty Name</div>
+    )
+
+    return this.state.emptyName ? alert : body;
   }
 }
 
