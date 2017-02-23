@@ -1,13 +1,13 @@
 .ONE::after {
 	content: 'o';
 	position: absolute;
-	bottom: -5px;
+	bottom: -6px;
 }
 
 .FIVE::after {
 	content: 'o';
 	position: absolute;
-	top: -5px;
+	top: -6px;
 }
 
 .CHANGE {
