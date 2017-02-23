@@ -23,12 +23,12 @@ export default class Header extends React.Component {
     } = this.props;
 
     const rightBtn = _.isEmpty(content) ? (
-      <button className="settings-btn btn" onClick={toggleSettings}>Settings</button>
+      <button className="settings-btn btn" onClick={toggleSettings}><i className="fa fa-cog"/></button>
     ) : (
-      <button className="save-btn btn" onClick={save}>Save</button>
+      <button className="save-btn btn" onClick={save}><i className="fa fa-download"/></button>
     );
 
-    const input = !settingsActive ? (
+    const input = (
       <input
         className="input"
         type="text"
@@ -37,12 +37,16 @@ export default class Header extends React.Component {
         onChange={this.changeName.bind(this)}
         value={name}
       />
-    ) : null;
+    );
 
     return (
       <div className="header">
-        <button className="record-btn btn" onClick={toggleRecording}>
-          {recording ? 'Stop' : 'Record'}
+        <button className={`record-btn btn ${recording ? 'recording' : 'stopped'}`} onClick={toggleRecording}>
+          {recording ? (
+            <i className="fa fa-stop"/>
+          ) : (
+            <i className="fa fa-circle"/>
+          )}
         </button>
         <Menu
           settingsActive={settingsActive}
